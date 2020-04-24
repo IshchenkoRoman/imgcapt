@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AJAX image upload with, jQuery</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script type="text/javascript">
+            $(document).ready(function (e) {
+                $('#upload').on('click', function () {
+                    var file_data = $('#file').prop('files')[0];
+                    var form_data = new FormData();
+                    form_data.append('file', file_data);
+                    $.ajax({
+                        url: 'http://localhost/ci/index.php/welcome/upload', // point to server-side controller method
+                        dataType: 'text', // what to expect back from the server
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function (response) {
+                            $('#msg').html(response); // display success response from the server
+                        },
+                        error: function (response) {
+                            $('#msg').html(response); // display error response from the server
+                        }
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <!-- Navigation bar -->
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand">Navigation bar</a>
+            <button class="navbar-toggler" type="button"
+                data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-toggler-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="bio.html"> Bio </a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <h1>Result of predict</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mb-2">
+                <img src="{{figure}}" alt="Image">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mb-1">
+                {{ caption }}
+            </div>
+        </div>
+
+        <form action="/upload-image" method="POST" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <div class="row">
+                    <div class="col-12 d-flex mt-1 ">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="image" id="image">
+                            <label class="custom-file-label" for="image">Select image...</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                 <button type="submit" class="btn btn-dark">Upload</button>
+                </div>
+            </div>
+    
+        </form>
+
+        <!-- <p id="msg"></p>
+
+        <input type="file" id="file" name="file" multiple />
+        <button id="upload">Upload</button> -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+
+    <footer>
+    </footer>
+
+</html>
