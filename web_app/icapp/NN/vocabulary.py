@@ -1,7 +1,7 @@
 import nltk
 import pickle
 import os.path
-from pycocotools.coco import COCO
+#from pycocotools.coco import COCO
 from collections import Counter
 
 class Vocabulary(object):
@@ -35,7 +35,7 @@ class Vocabulary(object):
         self.get_vocab()
 
     def get_vocab(self):
-        """Load the vocabulary from file OR build the vocabulary from scratch."""        
+        """Load the vocabulary from file OR build the vocabulary from scratch."""
         if os.path.exists(self.vocab_file) & self.vocab_from_file:
             with open(self.vocab_file, 'rb') as f:
                 vocab = pickle.load(f)
@@ -46,7 +46,7 @@ class Vocabulary(object):
             self.build_vocab()
             with open(self.vocab_file, 'wb') as f:
                 pickle.dump(self, f)
-        
+
     def build_vocab(self):
         """Populate the dictionaries for converting tokens to integers (and vice-versa)."""
         self.init_vocab()
