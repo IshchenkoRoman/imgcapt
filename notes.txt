@@ -1,0 +1,13 @@
+https://www.youtube.com/watch?v=vGphzPLemZE&feature=youtu.be&t=302
+
+The pytorch package that you're installing comes with both cpu and gpu support, thus has a large size. It seems you're using the free version of heroku, and only require the cpu support. The solution is to install the pytorch package for cpu only i.e.
+
+In requirements.txt, write the wheel file path corresponding to the version of pytorch (cpu) that you're interested in. You can find the list of wheel files, which can be installed with pip. For example, for PyTorch 1.3.1, torchvision 0.4.2, Python 3.7, Linux, you can write the following for pytorch and torchvision respectively:
+
+https://download.pytorch.org/whl/cpu/torch-1.3.1%2Bcpu-cp37-cp37m-linux_x86_64.whl
+https://download.pytorch.org/whl/cpu/torchvision-0.4.2%2Bcpu-cp37-cp37m-linux_x86_64.whl
+The above will download torch-1.3.1+cpu-cp37-cp37m-linux_x86_64.whl (107MB) torchvision-0.4.2+cpu-cp37-cp37m-linux_x86_64.whl (13MB) respectively.
+
+
+https://devcenter.heroku.com/articles/dynos
+https://stackoverflow.com/questions/2811453/how-to-stop-an-app-on-heroku
